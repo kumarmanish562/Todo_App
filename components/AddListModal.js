@@ -4,7 +4,6 @@ import { AntDesign } from '@expo/vector-icons';
 import colors from "../Color";
 import tempData from '../tempData';
 
-
 export default class AddListModal extends React.Component {
   backgroundColors = ["#5CD859", "#24A6D9", "#595BD9", "#8022D9", "#d159d8", "#d85963", "#d88559"];
 
