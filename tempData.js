@@ -1,14 +1,5 @@
 const tempData = [
-  {
-    name: "Plan a Trip",
-    color: "#24A6D9",
-    todos: [
-      { title: "Book Flight", complete: false },
-      { title: "Password Check", complete: true },
-      { title: "Reserve Hotel Room", complete: true },
-      { title: "Pack Luggage", complete: false }
-    ]
-  },
+  
   {
     name: "Grocery Shopping",
     color: "#FF6347",
@@ -38,5 +29,4 @@ const tempData = [
     ]
   }
 ];
-
 export default tempData;
