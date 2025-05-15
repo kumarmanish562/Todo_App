@@ -11,8 +11,8 @@ import {
 import colors from './Color';
 import { AntDesign } from '@expo/vector-icons';
 import tempData from './tempData';
-import TodoList from './componets/TodoList';
-import AddListModal from './componets/AddListModal';
+import TodoList from './components/TodoList';
+import AddListModal from './components/AddListModal';
 
 const { width } = Dimensions.get('window');
 
