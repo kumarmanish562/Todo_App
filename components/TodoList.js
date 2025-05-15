@@ -24,7 +24,6 @@ const TodoList = ({ list }) => {
     </View>
   );
 };
-
 export default TodoList;
 
 const styles = StyleSheet.create({
