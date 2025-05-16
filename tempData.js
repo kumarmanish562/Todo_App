@@ -1,6 +1,8 @@
 const tempData = [
   
   {
+    id: 1,
+
     name: "Grocery Shopping",
     color: "#FF6347",
     todos: [
@@ -11,6 +13,7 @@ const tempData = [
     ]
   },
   {
+     id: 2,
     name: "Project Submission",
     color: "#32CD32",
     todos: [
@@ -20,6 +23,7 @@ const tempData = [
     ]
   },
   {
+     id: 3,
     name: "Fitness Goals",
     color: "#8A2BE2",
     todos: [
