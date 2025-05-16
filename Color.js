@@ -1,9 +1,8 @@
-const colors = {
-  black: "#121212",        // Deep black (better for dark text on light backgrounds)
-  blue: "#1E90FF",         // Dodger Blue – vibrant, eye-catching, good for buttons & highlights
-  lightblue: "#A0C4FF",    // Soft Blue – clean divider or background accent
-  white: "#FFFFFF",        // Pure white – looks clean and modern on Android
-  
+export default {
+  white: "#fff",
+  black: "#000",
+  gray: "#A9A9A9",
+  lightgray: "#f0f0f0",
+  blue: "#4A90E2",
+  red: "#FF3B30",
 };
-
-export default colors;
