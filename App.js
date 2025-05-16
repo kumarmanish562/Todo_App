@@ -17,22 +17,51 @@ import AddListModal from './components/AddListModal';
 const { width } = Dimensions.get('window');
 
 export default class App extends React.Component {
-state = {
-  addTodoVisible : false
-}
- toggleAddTodoModal(){
-  this.setState({addTodoVisible: !this.state.addTodoVisible})
- }
+  state = {
+    addTodoVisible: false,
+    lists: tempData,
+  };
+
+  toggleAddTodoModal = () => {
+    this.setState({ addTodoVisible: !this.state.addTodoVisible });
+  };
+
+  renderList = (list) => {
+    return <TodoList list={list} updateList={this.updateList} />;
+  };
+
+  addList = (list) => {
+    this.setState({
+      lists: [
+        ...this.state.lists,
+        { ...list, id: this.state.lists.length + 1, todos: [] },
+      ],
+    });
+  };
+
+  updateList = (updatedList) => {
+    this.setState({
+      lists: this.state.lists.map((list) =>
+        list.id === updatedList.id ? updatedList : list
+      ),
+    });
+  };
 
   render() {
     return (
       <View style={styles.container}>
-        <Modal animatedType="slide" 
-        visible={this.state.addTodoVisible} 
-        onRequestClose={()=> this.toggleAddTodoModal()}>
-         
-         <AddListModal closeModal={() =>  this.toggleAddTodoModal()}/>
+        {/* Modal for adding list */}
+        <Modal
+          animationType="slide"
+          visible={this.state.addTodoVisible}
+          onRequestClose={this.toggleAddTodoModal}
+        >
+          <AddListModal
+            closeModal={this.toggleAddTodoModal}
+            addList={this.addList}
+          />
         </Modal>
+
         {/* Header */}
         <View style={styles.header}>
           <View style={styles.divider} />
@@ -44,7 +73,7 @@ state = {
 
         {/* Add List Button */}
         <View style={styles.addSection}>
-          <TouchableOpacity style={styles.fab} onPress={()=> this.toggleAddTodoModal()}>
+          <TouchableOpacity style={styles.fab} onPress={this.toggleAddTodoModal}>
             <AntDesign name="plus" size={28} color={colors.white} />
           </TouchableOpacity>
           <Text style={styles.addLabel}>Add New List</Text>
@@ -53,11 +82,11 @@ state = {
         {/* List Display */}
         <View style={styles.listSection}>
           <FlatList
-            data={tempData}
-            keyExtractor={(item) => item.name}
+            data={this.state.lists}
+            keyExtractor={(item) => item.id.toString()}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => <TodoList list={item} />}
+            renderItem={({ item }) => this.renderList(item)}
           />
         </View>
 
