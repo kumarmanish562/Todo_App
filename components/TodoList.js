@@ -1,30 +1,61 @@
-import { StyleSheet, View, Text } from 'react-native';
 import React from 'react';
-import colors from "../Color";
-const TodoList = ({ list }) => {
-  const completedCount = list.todos.filter(todo => todo.complete).length;
-  const remainingCount = list.todos.length - completedCount;
-  return (
-    <View style={[styles.listContainer, { backgroundColor: list.color }]}>
-      <Text style={styles.listTitle} numberOfLines={1}>
-        {list.name}
-      </Text>
+import { StyleSheet, View, Text, TouchableOpacity, Modal } from 'react-native';
+import colors from '../Color';
+import { AntDesign } from '@expo/vector-icons';
+import TodoModal from './TodoModal';
 
-      <View style={styles.statsContainer}>
-        <View style={styles.statBox}>
-          <Text style={styles.count}>{remainingCount}</Text>
-          <Text style={styles.subtitle}>Remaining</Text>
-        </View>
+export default class TodoList extends React.Component {
+  state = { 
+    showListVisible: false
+  };
 
-        <View style={styles.statBox}>
-          <Text style={styles.count}>{completedCount}</Text>
-          <Text style={styles.subtitle}>Completed</Text>
-        </View>
+  toggleListModal = () => {
+    this.setState({ showListVisible: !this.state.showListVisible });
+  }
+
+  render() {
+    const { list } = this.props;
+    const completedCount = list.todos.filter(todo => todo.completed).length;
+    const remainingCount = list.todos.length - completedCount;
+
+    return (
+      <View>
+        <Modal 
+          animationType="slide" 
+          visible={this.state.showListVisible} 
+          onRequestClose={this.toggleListModal}
+        >
+          <TodoModal 
+            list={list} 
+            closeModal={this.toggleListModal} 
+            updateList={this.props.updateList}
+          />
+        </Modal>
+
+        <TouchableOpacity 
+          style={[styles.listContainer, { backgroundColor: list.color }]} 
+          onPress={this.toggleListModal}
+        >
+          <Text style={styles.listTitle} numberOfLines={1}>
+            {list.name}
+          </Text>
+
+          <View style={styles.statsContainer}>
+            <View style={styles.statBox}>
+              <Text style={styles.count}>{remainingCount}</Text>
+              <Text style={styles.subtitle}>Remaining</Text>
+            </View>
+
+            <View style={styles.statBox}>
+              <Text style={styles.count}>{completedCount}</Text>
+              <Text style={styles.subtitle}>Completed</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
       </View>
-    </View>
-  );
-};
-export default TodoList;
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   listContainer: {
@@ -34,7 +65,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 12,
     alignItems: 'center',
     width: 220,
-    elevation: 4, // Android shadow
+    elevation: 4,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.2,
