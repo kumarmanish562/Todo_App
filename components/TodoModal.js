@@ -11,12 +11,10 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import colors from "../Color";
-
 export default class TodoModal extends React.Component {
   state = {
     newTodo: "",
   };
-
   toggleTodoCompleted = (index) => {
     let list = this.props.list;
     list.todos[index].completed = !list.todos[index].completed;
