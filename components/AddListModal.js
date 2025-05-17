@@ -21,7 +21,6 @@ const backgroundColors = [
   "#D85963",
   "#D88559",
 ];
-
 export default class AddListModal extends React.Component {
   state = {
     name: "",
