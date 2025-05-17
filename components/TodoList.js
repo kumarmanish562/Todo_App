@@ -17,7 +17,6 @@ export default class TodoList extends React.Component {
     const { list } = this.props;
     const completedCount = list.todos.filter(todo => todo.completed).length;
     const remainingCount = list.todos.length - completedCount;
-
     return (
       <View>
         <Modal 
@@ -56,7 +55,6 @@ export default class TodoList extends React.Component {
     );
   }
 }
-
 const styles = StyleSheet.create({
   listContainer: {
     paddingVertical: 28,
